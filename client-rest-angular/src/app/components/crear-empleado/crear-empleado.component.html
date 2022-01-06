@@ -4,13 +4,15 @@
     <p *ngIf="status !='success'">
       Crea un nuevo empleado.</p>
     <hr />
-  
-    <div class="alert alert-success col-md-5" *ngIf="status=='success'">
-      El empleado se han guardado correctamente!!
+    <div class="form-group row justify-content-center">
+        <div class="alert alert-success col-md-12" *ngIf="status=='success'">
+            El empleado se han guardado correctamente!!
+          </div>
+          <div class="alert alert-danger col-md-12" *ngIf="status=='error'">
+            Revise los campos (*) y vuelva a intentarlo!!
+          </div>
     </div>
-    <div class="alert alert-danger col-md-5" *ngIf="status=='error'">
-      Revise los campos (*) y vuelva a intentarlo!!
-    </div>
+    
     <!--formulario de crear categoria-->
     <form  #empleadoForm="ngForm"  (ngSubmit)="onSubmit(empleadoForm)" class="justify-content-center ">
         <div class="form-group row justify-content-center">
@@ -30,7 +32,7 @@
                 <label for="nombre">Correo electrónico *</label>
             </div>
             <div class="col-md-6">
-            <input type="text" name="email"  class="form-control" #email="ngModel"  [(ngModel)]="empleado.email" required />
+            <input type="text" name="email"  class="form-control" #email="ngModel"  [(ngModel)]="empleado.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
             <small *ngIf="!email.valid && email.touched"  class="invalid-feedback d-block">
                 El correo no es válido
             </small>
