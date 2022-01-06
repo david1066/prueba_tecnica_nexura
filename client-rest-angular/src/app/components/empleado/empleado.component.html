@@ -1,0 +1,31 @@
+<h1>Empleados</h1>
+<p>Este es el listado de todos los empleados </p>
+
+<a class="float-end m-2 btn btn-primary" [routerLink]="['/crear-empleado']"><fa-icon [icon]="faUserPlus"></fa-icon> Crear</a>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col"><fa-icon [icon]="faUser"></fa-icon> Nombre</th>
+    <th scope="col"><fa-icon [icon]="faAt"></fa-icon> Email</th>
+    <th scope="col"><fa-icon [icon]="faVenusMars"></fa-icon> Sexo</th>
+    <th scope="col"><fa-icon [icon]="faBriefcase"></fa-icon> Area</th>
+    <th scope="col"><fa-icon [icon]="faEnvelope"></fa-icon> Boletin</th>
+    <th scope="col">Modificar</th>
+    <th scope="col">Eliminar</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empleado of empleados">
+        <th scope="row">{{ empleado.nombre}}</th>
+        <td>
+          {{ empleado.email }}
+        </td>
+        <td>{{ sexo(empleado.sexo)  }}</td>
+        <td>{{ empleado.areas.nombre }}</td>
+        <td>{{ boletin(empleado.boletin) }}</td>
+        <td> </td>
+        <td> <a (click)="delete(empleado.id)"><fa-icon [icon]="faTrash"></fa-icon></a></td>
+      </tr>
+  </tbody>
+</table>

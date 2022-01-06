@@ -1,0 +1,116 @@
+
+<div class="col-md-12 mt-3">
+    <h1 >Crear empleado</h1>
+    <p *ngIf="status !='success'">
+      Crea un nuevo empleado.</p>
+    <hr />
+  
+    <div class="alert alert-success col-md-5" *ngIf="status=='success'">
+      El empleado se han guardado correctamente!!
+    </div>
+    <div class="alert alert-danger col-md-5" *ngIf="status=='error'">
+      Revise los campos (*) y vuelva a intentarlo!!
+    </div>
+    <!--formulario de crear categoria-->
+    <form  #empleadoForm="ngForm"  (ngSubmit)="onSubmit(empleadoForm)" class="justify-content-center ">
+        <div class="form-group row justify-content-center">
+            <div class="col-md-4">
+                <label for="nombre">Nombre completo *</label>
+            </div>
+            <div class="col-md-6">
+            <input type="text" name="nombre"  class="form-control" #nombre="ngModel"  [(ngModel)]="empleado.nombre" required />
+            <small *ngIf="!nombre.valid && nombre.touched"  class="invalid-feedback d-block">
+                El nombre del empleado no es válido
+            </small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row justify-content-center">
+            <div class="col-md-4">
+                <label for="nombre">Correo electrónico *</label>
+            </div>
+            <div class="col-md-6">
+            <input type="text" name="email"  class="form-control" #email="ngModel"  [(ngModel)]="empleado.email" required />
+            <small *ngIf="!email.valid && email.touched"  class="invalid-feedback d-block">
+                El correo no es válido
+            </small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row justify-content-start">
+            <div class="col-md-1">
+               
+            </div>
+            <div class="col-md-4">
+                <label for="sexo">Sexo *</label>
+            </div>
+            <div class="col-md-3">
+
+            <input type="radio" name="sexo"  ng-control="sexo"  [value]="1"  #sexo="ngModel"  [(ngModel)]="empleado.sexo"  />Femenino
+            <input type="radio" name="sexo" ng-control="sexo"  [value]="2" #sexo="ngModel"  [(ngModel)]="empleado.sexo"  />Masculino
+            <small *ngIf="!vsexo" class="invalid-feedback d-block">Debe seleccionar el sexo</small>
+              
+            </div>
+        </div>
+        <br>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-md-4">
+                <label for="nombre">Area *</label>
+            </div>
+            <div class="col-md-6">
+            <select  name="area_id"  class="form-control" #area_id="ngModel"  [(ngModel)]="empleado.area_id" >
+               
+                <option *ngFor="let area of areas" value="{{area.id}}">{{area.nombre}}</option>
+            </select>
+            <small *ngIf="!varea_id" class="invalid-feedback d-block">Debe seleccionar el area</small>
+              
+            </div>
+        </div>  
+        <br>
+        <div class="form-group row justify-content-center">
+            <div class="col-md-4">
+                <label for="nombre">Descripcion *</label>
+            </div>
+            <div class="col-md-6">
+                <textarea  name="descripcion" class="form-control" #descripcion="ngModel" [(ngModel)]="empleado.descripcion" required></textarea>
+                <small *ngIf="!descripcion.valid && descripcion.touched" class="invalid-feedback d-block">La descripcion no es valida</small>
+              
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-md-4">
+                <label for="nombre">Roles *</label>
+            </div>
+            <div class="col-md-6">
+                <div class=" form-group row justify-content-center" *ngFor="let rol of roles">
+           
+                    <label ><input   id="c{{rol.id}}" type="checkbox" value="{{rol.id}}"> {{rol.nombre}}</label>
+                
+                </div>
+                <small *ngIf="!vcheckbox" class="invalid-feedback d-block">Debe seleccionar al menos un rol</small>
+              
+
+            </div>
+           
+            
+        </div>
+
+       
+
+      <div class="form-group row justify-content-center">
+           
+        <div class="col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-success" [disabled]="empleadoForm.invalid"/>
+        </div>
+       
+    </div>
+
+  </form>
+    <!--cerrar formulario de crear empleado-->
+  
+    <br>
+  
+  </div>
+  
